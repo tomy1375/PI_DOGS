@@ -3,9 +3,14 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const { getAndSaveTemperament } = require('./controllers/temperamentController.js');
+
+
+
+
 
 require('./db.js');
-
+// app.use(express.json())
 const server = express();
 
 server.name = 'API';
@@ -24,6 +29,7 @@ server.use((req, res, next) => {
 
 server.use('/', routes);
 
+
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
@@ -31,5 +37,8 @@ server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   console.error(err);
   res.status(status).send(message);
 });
-
+// app.use(morgan('dev'))
+// app.get('/',(req,res)=>{
+//   res.status(200).send('llegue al endpoint')
+// })
 module.exports = server;
