@@ -1,12 +1,13 @@
 const { Sequelize } = require('sequelize')
-const {Dog} = require('../db')
+const {Dog,Temperament} = require('../db')
 const axios = require("axios")
-const Temperament = require('../models/Temperament')
+require('dotenv').config();
+const apiKey = process.env.API_KEY;
 
 const getAndSaveTemperament = async () => {
     try {
       // Obtener información de un solo perro de la API
-      const apiURL = 'https://api.thedogapi.com/v1/breeds/1'; // Cambia el '1' por el ID del perro que deseas obtener
+      const apiURL = `https://api.thedogapi.com/v1/breeds/?api_key=${apiKey}`; // Cambia el '1' por el ID del perro que deseas obtener
       const response = await axios.get(apiURL);
       const dogInfo = response.data;
   
