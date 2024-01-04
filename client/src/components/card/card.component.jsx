@@ -20,13 +20,13 @@ function Card({ user }) {
     fetchImage();
   }, [user.reference_image_id]);
 
-  const { name, temperament ,weight} = user;
+  const { name, temperament ,} = user;
 
   return (
     <div className='card-container'>
       <h2>{name}</h2>
       <p>{temperament}</p>
-      <p>{`Weight (imperial): ${weight.imperial}, Weight (metric): ${weight.metric}`}</p>
+      {/* <p>{`Weight (imperial): ${weight.imperial}, Weight (metric): ${weight.metric}`}</p> */}
       <img className='dog-image' src={imageUrl} alt={name} />
     </div>
   );

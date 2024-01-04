@@ -1,8 +1,31 @@
-.search-box{
-    /* -webkit-appearance: none; */
-    border: none;
+/* navbar.styles.css */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
-    width: 150px;
-    line-height: 30px;
-    margin-bottom: 30px;
-}
+   
+    /* Otros estilos según sea necesario */
+  }
+  
+  .nav-links {
+    display: flex;
+  }
+  
+  .nav-link {
+    margin-right: 10px;
+  }
+  
+  .search-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    margin-right: 10px;
+  }
+  
+  .search-button {
+    /* Estilos específicos para el botón de búsqueda */
+  }
+  

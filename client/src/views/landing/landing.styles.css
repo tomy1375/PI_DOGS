@@ -1,0 +1,60 @@
+ landing.styles.css
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Esto evita la barra de desplazamiento vertical */
+}
+
+.landing-container {
+  position: relative;
+  width: 100vw; /* Ancho fijo del viewport */
+  height: 100vh; /* Altura fija del viewport */
+  overflow: hidden; /* Esto evita que el contenido se desborde */
+}
+
+.img_landing {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.titulo{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.subtitulo{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+h1 {
+  color: rgb(140, 50, 50);
+}
+
+h2 {
+  top: 50%;
+  color: rgb(57, 34, 34);
+}
+
+.buttonInicio {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px; /* Ajusta el relleno según sea necesario */
+  color: black; /* Cambia el color del texto según sea necesario */
+  background-color: #663046;
+  border: 1px solid #0000;
+  cursor: pointer;
+  font-family: 'Courier New', Courier, monospace;
+  transition: transform 0.25s ease-out;
+}
+
+.buttonInicio:hover {
+  transform: translate(-50%, -50%) scale(1.3); /* Agranda el botón cuando el cursor está sobre él */
+}

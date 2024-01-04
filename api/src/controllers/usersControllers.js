@@ -22,6 +22,7 @@ const infoCleaner = (arr) =>arr.map ( user =>{
         weight: user.weight,
         height: user.height,
         reference_image_id: user.reference_image_id,
+        temperament: user.temperament,
         created: false
     }
 })
@@ -36,30 +37,35 @@ const getAllUser = async()=>{
     return[...usersDB,...usersApi]// de esta manera juntos tanto usersDB como userApi
 }
 
-const getUserByName = async(name)=>{
+const getUserByName = async (name) => {
     const infoApi = (await axios.get(
-        `https://api.thedogapi.com/v1/breeds/?api_key=${apiKey}`
-    )).data
-     const usersApi = infoCleaner(infoApi)  
-     // Convertir el nombre de búsqueda y los nombres de la API a minusculas
-    const lowerCaseSearchName = name.toLowerCase(); 
-    const userFiltered = usersApi.filter(user => user.name.toLowerCase() === lowerCaseSearchName);
-    const userDb = await Dog.findAll({
-        where: {
-          name: {
-            // Utilizar la función de Sequelize 'iLike' para hacer la busqueda insensible a mayusculas y minusculas
-            [Sequelize.Op.iLike]: `%${name}%`
-          }
-        }
-      });
-      if (userFiltered.length === 0 && userDb.length === 0) {
-        // Si no se encuentra ningun perro
-        return [{ message: "El perro que está buscando no existe o escribió mal su nombre." }];
-      }
+      `https://api.thedogapi.com/v1/breeds/?api_key=${apiKey}`
+    )).data;
+    const usersApi = infoCleaner(infoApi);
+  
+    // Convertir el nombre de búsqueda a minúsculas
+    const lowerCaseSearchName = name.toLowerCase();
     
-     return[...userFiltered,...userDb]
-}
-
+    // Filtrar por coincidencia parcial en el nombre
+    const userFiltered = usersApi.filter(user =>
+      user.name.toLowerCase().includes(lowerCaseSearchName)
+    );
+  
+    // Filtrar en la base de datos por coincidencia parcial en el nombre
+    const userDb = await Dog.findAll({
+      where: {
+        name: {
+          [Sequelize.Op.iLike]: `%${name}%`
+        }
+      }
+    });
+  
+    if (userFiltered.length === 0 && userDb.length === 0) {
+      return [{ message: "El perro que está buscando no existe o escribió mal su nombre." }];
+    }
+  
+    return [...userFiltered, ...userDb];
+  };
 
 module.exports = {
     createDogDb,

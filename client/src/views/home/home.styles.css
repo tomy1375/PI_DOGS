@@ -5,11 +5,8 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(
-        to left,
-        rgba(7,27,82,1) 0%,
-        rgba(0,128,128,1) 100%
-    );
+    background:  #d1c8ac 0%;
+    
     text-align: center;
   }
   
@@ -18,7 +15,7 @@ body {
     margin-top: 75px;
     margin-bottom: 50px;
     font-size: 76px;
-    color: aqua;
+    color: #663046;
     font-family: 'Courier New', Courier, monospace;
 }
 
@@ -26,4 +23,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.img_home {
+  width: 85%;
+  max-height: 206px;
+  object-fit: cover;
+  margin: 20px;
+}
+.img_title {
+  position: absolute;
+  top: 17%;
+  left: 24%;
+  transform: translate(-50%, -50%);
+  color: rgb(9, 9, 9); /* Puedes ajustar el color del texto según tus necesidades */
+  font-size: 45px; /* Puedes ajustar el tamaño del texto según tus necesidades */
 }
